@@ -14,7 +14,9 @@ public class AppProyectoForm {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        //I will not die, i'm waiting for you
+        
     }
     
 }
