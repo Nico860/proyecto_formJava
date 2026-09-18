@@ -10,6 +10,6 @@ package appproyectoform;
  */
 public class prueba {
     
-    //Hola; te pico la cola
+    //Hola
     
 }
