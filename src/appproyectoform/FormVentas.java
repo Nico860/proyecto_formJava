@@ -221,7 +221,7 @@ public class FormVentas extends javax.swing.JFrame {
         //se recorre la lista de productos y se retorna el 
         //objeto cuando se encuentra
         for (Producto p : DBRegistros.productos) {
-            if(p.codigo == codigo) return p;
+            if(p.getCodigo().equalsIgnoreCase(codigo)) return p;
         }
         return null;
     }

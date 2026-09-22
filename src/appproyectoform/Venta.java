@@ -24,7 +24,7 @@ public class Venta {
     //se definen los metodos 
     public double total(){
         //devuelve el precio total de la venta
-        return (double)cantidad * producto.precio;
+        return (double)cantidad * producto.getPrecio();
     }
     
     public Producto getProducto() {
