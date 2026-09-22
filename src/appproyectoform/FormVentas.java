@@ -5,6 +5,7 @@
 package appproyectoform;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -65,20 +66,21 @@ public class FormVentas extends javax.swing.JFrame {
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         tbVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Codigo de Producto", "Cantidad", "Total"
+                "Codigo de Producto", "Nombre", "Cantidad", "Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -203,18 +205,32 @@ public class FormVentas extends javax.swing.JFrame {
             Producto p = buscar_por_codigo(codigo);
             
             //se valida que se encontro el producto
-            if(p == null){
+            if(p.equals(null)){
                 JOptionPane.showMessageDialog(this, "No se encontro el producto, valide que el codigo sea valido");
+                return;
+            }
+            
+            //se descuenta y valida, del stock del producto
+            if(!p.descontar_de_stock(cantidad)){
+                JOptionPane.showMessageDialog(this, "No hay stock suficiente para realizar la venta");
                 return;
             }
             
             //se registra la venta en la lista
             DBRegistros.ventas.add(new Venta(p, cantidad));
             
-            
+            //se refresca la vista
+            refrescarListado();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error valide los campos");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        // se limpian los campos
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     //busca y retorna el producto mediante el codigo
     private Producto buscar_por_codigo(String codigo){
@@ -224,6 +240,40 @@ public class FormVentas extends javax.swing.JFrame {
             if(p.getCodigo().equalsIgnoreCase(codigo)) return p;
         }
         return null;
+    }
+    
+    private void limpiar(){
+        txtCantidad.setText("");
+        txtCodigo.setText("");
+    }
+    
+    private void refrescarListado(){
+        //se crea una variable para acumular cada total
+        double total = 0; 
+        //se obtiene el modelo de la tabla
+        DefaultTableModel modelo = (DefaultTableModel) tbVentas.getModel();
+        modelo.setRowCount(0); //se vacía la tabla
+        
+        //se recorre la lista de ventas y se va agregando cada objeto a la tabla
+        for (Venta v : DBRegistros.ventas) {
+            modelo.addRow(new Object[]{
+                v.getProducto().getCodigo(), //codigo de producto
+                v.getProducto().getNombre(), //nombre de producto
+                v.getCantidad(), //cantidad
+                v.total() //total de venta
+            });
+            
+            total += v.total();
+        }
+        
+        definirTotalFinal(total);
+    }
+    
+    private void definirTotalFinal(double total){
+        //se castea el total
+        String t = String.valueOf(total);
+        //actualiza el total de txtSalida
+        txtSalida.setText(t);
     }
     
     /**

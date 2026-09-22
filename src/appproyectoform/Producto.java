@@ -25,6 +25,14 @@ public class Producto {
     
     //se definen los metodos
 
+    public boolean descontar_de_stock(int cantidad){
+        //se valida que haiga stock suficiente
+        if(cantidad > stock) return false;
+        //se descuenta del stock
+        stock -= cantidad;
+        return true;
+    }
+    
     public String getCodigo() {
         return codigo;
     }
