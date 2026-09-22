@@ -4,6 +4,8 @@
  */
 package appproyectoform;
 
+import fuentes.Fuentes;
+import java.awt.Font;
 import java.text.Normalizer;
 
 /**
@@ -13,7 +15,8 @@ import java.text.Normalizer;
 public class FormProductos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProductos.class.getName());
-
+    private static final String RUTAFUENTE = "/src/fuentes/AerobicsRegular.ttf";
+    
     /**
      * Creates new form FormProductos
      */
@@ -159,7 +162,9 @@ public class FormProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-        // TODO add your handling code here:
+        //Carga de la fuente: 
+            Font fuente = Fuentes.cargarFuentes(RUTAFUENTE, 24f);
+            jLabel1.setFont(fuente);
         
         //se crea una instancía del formulario
         FormVentas formVentas = new FormVentas();
