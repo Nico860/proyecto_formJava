@@ -10,6 +10,7 @@ package appproyectoform;
  */
 
 public class Venta {
+    /*
     //se definen los atributos de la clase
     private Producto producto;
     private int cantidad;
@@ -41,4 +42,5 @@ public class Venta {
     public int getCantidad() {
         return cantidad;
     }
+    */
 }
