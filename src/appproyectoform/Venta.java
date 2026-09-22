@@ -22,13 +22,6 @@ public class Venta {
     }
     
     //se definen los metodos 
-
-    public String resumen(){    
-        //retorna una linea de texto con la información del objeto
-        return ("Codigo del produto: " + producto.codigo + ", precio: " + producto.precio +
-                ", cantidad vendida: " + cantidad + ", total: " + total());
-    }
-    
     public double total(){
         //devuelve el precio total de la venta
         return (double)cantidad * producto.precio;

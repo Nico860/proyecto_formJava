@@ -4,6 +4,8 @@
  */
 package appproyectoform;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author CHAPTOPS TACTIC
@@ -59,6 +61,7 @@ public class FormVentas extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -182,6 +185,47 @@ public class FormVentas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnInventarioActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            //se extraen los datos de los campos
+            String codigo = txtCodigo.getText();
+            int cantidad = Integer.parseInt(txtCantidad.getText());
+            
+            //se valida el campo que no este vacío
+            if(codigo.trim().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Llene los campos vacíos");
+                return;
+            }
+            
+            //se extrae el producto de la lista 
+            Producto p = buscar_por_codigo(codigo);
+            
+            //se valida que se encontro el producto
+            if(p == null){
+                JOptionPane.showMessageDialog(this, "No se encontro el producto, valide que el codigo sea valido");
+                return;
+            }
+            
+            //se registra la venta en la lista
+            DBRegistros.ventas.add(new Venta(p, cantidad));
+            
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    //busca y retorna el producto mediante el codigo
+    private Producto buscar_por_codigo(String codigo){
+        //se recorre la lista de productos y se retorna el 
+        //objeto cuando se encuentra
+        for (Producto p : DBRegistros.productos) {
+            if(p.codigo == codigo) return p;
+        }
+        return null;
+    }
+    
     /**
      * @param args the command line arguments
      */
