@@ -4,7 +4,6 @@
  */
 package appproyectoform;
 
-import fuentes.Fuentes;
 import java.awt.Font;
 import java.text.Normalizer;
 
@@ -15,7 +14,7 @@ import java.text.Normalizer;
 public class FormProductos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProductos.class.getName());
-    private static final String RUTAFUENTE = "/src/fuentes/AerobicsRegular.ttf";
+    
     
     /**
      * Creates new form FormProductos
@@ -57,27 +56,28 @@ public class FormProductos extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Aerobics", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Inventario de Productos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 480, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 480, -1));
 
-        jLabel2.setFont(new java.awt.Font("Aerobics", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("COdigo:");
+        jLabel2.setText("Código:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 87, 100, -1));
 
-        jLabel3.setFont(new java.awt.Font("Aerobics", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 125, 100, -1));
 
-        jLabel4.setFont(new java.awt.Font("Aerobics", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Precio:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 169, 80, -1));
 
-        jLabel5.setFont(new java.awt.Font("Aerobics", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Stock:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 213, 90, -1));
@@ -125,7 +125,7 @@ public class FormProductos extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 343, 584, 270));
 
-        jLabel6.setFont(new java.awt.Font("Aerobics", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Buscar Producto:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 257, -1, -1));
@@ -162,9 +162,6 @@ public class FormProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-        //Carga de la fuente: 
-            Font fuente = Fuentes.cargarFuentes(RUTAFUENTE, 24f);
-            jLabel1.setFont(fuente);
         
         //se crea una instancía del formulario
         FormVentas formVentas = new FormVentas();
