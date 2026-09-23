@@ -11,14 +11,16 @@ package appproyectoform;
 
 public class Venta {
     //se definen los atributos de la clase
+    private String codigo;
     private Producto producto;
     private int cantidad;
     
     //se construye el constructor
 
-    public Venta(Producto producto, int cantidad) {
+    public Venta(String codigo,Producto producto, int cantidad) {
         this.producto = producto;
-        this.cantidad = cantidad;
+        this.cantidad = cantidad; 
+        this.codigo = codigo;
     }
     
     //se definen los metodos 
@@ -34,4 +36,10 @@ public class Venta {
     public int getCantidad() {
         return cantidad;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
+    
+    
 }

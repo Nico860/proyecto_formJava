@@ -23,8 +23,6 @@ public class FormVentas extends javax.swing.JFrame {
         initComponents();
         //se define no editable la tabla
         tbVentas.setEnabled(false);
-        
-        codlbl.setFont(FuentePersonalizada.fuentePersonalizada());
     }
 
     /**
@@ -77,17 +75,17 @@ public class FormVentas extends javax.swing.JFrame {
 
         tbVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Codigo de Producto", "Nombre", "Cantidad", "Total"
+                "Codigo de Venta", "Codigo de Producto", "Nombre", "Cantidad", "Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -115,7 +113,7 @@ public class FormVentas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 30, Short.MAX_VALUE)
+                .addGap(0, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -242,7 +240,7 @@ public class FormVentas extends javax.swing.JFrame {
             }
             
             //se registra la venta en la lista
-            DBRegistros.ventas.add(new Venta(p, cantidad));
+            DBRegistros.ventas.add(new Venta(codigoVenta, p, cantidad));
             
             //se refresca la vista
             refrescarListado();
@@ -282,6 +280,7 @@ public class FormVentas extends javax.swing.JFrame {
         //se recorre la lista de ventas y se va agregando cada objeto a la tabla
         for (Venta v : DBRegistros.ventas) {
             modelo.addRow(new Object[]{
+                v.getCodigo(), //codigo de la venta
                 v.getProducto().getCodigo(), //codigo de producto
                 v.getProducto().getNombre(), //nombre de producto
                 v.getCantidad(), //cantidad
@@ -299,6 +298,15 @@ public class FormVentas extends javax.swing.JFrame {
         String t = String.valueOf(total);
         //actualiza el total de txtSalida
         txtSalida.setText(t);
+    }
+    
+    private boolean existeCodigoVenta(String codigo){
+        //se recorre la lista de ventas 
+        for (Venta v : DBRegistros.ventas) {
+            //se verifica si es el codigo
+            if(v.getCodigo().equalsIgnoreCase(codigo)) return true;
+        }
+        return false;
     }
     
     /**
