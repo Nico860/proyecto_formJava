@@ -6,6 +6,7 @@ package appproyectoform;
 
 import java.awt.Font;
 import java.text.Normalizer;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -141,6 +142,7 @@ public class FormProductos extends javax.swing.JFrame {
         jPanel1.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 257, -1, -1));
 
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBuscar.addActionListener(this::txtBuscarActionPerformed);
         jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 254, 380, -1));
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -190,6 +192,19 @@ public class FormProductos extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        String codigo = txtCodigo.getText();
+        boolean existe;
+        
+        for (int i = 0; i < DBRegistros.productos.size(); i++){
+            if (codigo.equalsIgnoreCase(codigo)){ existe = true; break; }
+            else {
+                JOptionPane.showMessageDialog(this, "No se encontró o ya existe, favor de verificar.");
+            }
+        }
+        
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
     /**
      * @param args the command line arguments
