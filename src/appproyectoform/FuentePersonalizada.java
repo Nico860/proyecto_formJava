@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class FuentePersonalizada {
     public static Font fuentePersonalizada(){
         try {
-            String ruta = "Fuentes/Minecrafter.Reg.ttf";
+            String ruta = "Fuentes/VIDEOPHREAK.ttf";
  
             InputStream is = FuentePersonalizada.class.getClassLoader().getResourceAsStream(ruta);
             
