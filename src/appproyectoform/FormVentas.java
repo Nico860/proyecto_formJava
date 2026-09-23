@@ -4,6 +4,7 @@
  */
 package appproyectoform;
 
+import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +21,8 @@ public class FormVentas extends javax.swing.JFrame {
      */
     public FormVentas() {
         initComponents();
+        //se define no editable la tabla
+        tbVentas.setEnabled(false);
     }
 
     /**
@@ -205,7 +208,7 @@ public class FormVentas extends javax.swing.JFrame {
             Producto p = buscar_por_codigo(codigo);
             
             //se valida que se encontro el producto
-            if(p.equals(null)){
+            if(Objects.isNull(p)){
                 JOptionPane.showMessageDialog(this, "No se encontro el producto, valide que el codigo sea valido");
                 return;
             }
@@ -262,7 +265,7 @@ public class FormVentas extends javax.swing.JFrame {
                 v.getCantidad(), //cantidad
                 v.total() //total de venta
             });
-            
+            //se acumula cada total
             total += v.total();
         }
         
