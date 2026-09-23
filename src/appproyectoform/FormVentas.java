@@ -24,7 +24,13 @@ public class FormVentas extends javax.swing.JFrame {
         //se define no editable la tabla
         tbVentas.setEnabled(false);
         lblTituloForm.setFont(FuentePersonalizada.fuentePersonalizada());
-        
+        lblCodV.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblCodP.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblCantidad.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblTotalVentas.setFont(FuentePersonalizada.fuentePersonalizada());
+        btnLimpiar.setFont(FuentePersonalizada.fuentePersonalizada());
+        btnRegistrar.setFont(FuentePersonalizada.fuentePersonalizada());
+        btnRegresar.setFont(FuentePersonalizada.fuentePersonalizada());
     }
 
     /**
@@ -47,10 +53,11 @@ public class FormVentas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbVentas = new javax.swing.JTable();
         lblTotalVentas = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
         txtSalida = new javax.swing.JLabel();
-        btnInventario = new javax.swing.JButton();
         lblCodV = new javax.swing.JLabel();
         txtCodigoVenta = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,27 +69,27 @@ public class FormVentas extends javax.swing.JFrame {
 
         lblCodP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCodP.setText("Código de Producto:");
-        jPanel1.add(lblCodP, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 107, -1, -1));
+        jPanel1.add(lblCodP, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 107, 200, -1));
 
         lblCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCantidad.setText("Cantidad:");
-        jPanel1.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 145, 68, -1));
+        jPanel1.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 145, 160, -1));
 
         txtCodigoProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtCodigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 104, 437, -1));
+        jPanel1.add(txtCodigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 104, 400, -1));
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 142, 437, -1));
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 142, 400, -1));
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(547, 186, 94, -1));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 140, -1));
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 186, 94, -1));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 130, -1));
 
         tbVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,38 +118,40 @@ public class FormVentas extends javax.swing.JFrame {
         lblTotalVentas.setText("Total de ventas: ");
         jPanel1.add(lblTotalVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 515, -1, 42));
 
+        btnRegresar.setBackground(new java.awt.Color(153, 255, 204));
+        btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(this::btnRegresarActionPerformed);
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 630, 150, 40));
+
         txtSalida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel1.add(txtSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 515, 450, 42));
 
-        btnInventario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnInventario.setText("Inventario de Productos");
-        btnInventario.addActionListener(this::btnInventarioActionPerformed);
-        jPanel1.add(btnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 186, -1, -1));
-
         lblCodV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCodV.setText("Código de Venta:");
-        jPanel1.add(lblCodV, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 69, -1, -1));
+        jPanel1.add(lblCodV, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 69, 190, -1));
 
         txtCodigoVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtCodigoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 66, 437, -1));
+        jPanel1.add(txtCodigoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 66, 400, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asadal_stock_30.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 690, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 38, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
 
         //se crea una instancía del formulario
@@ -151,7 +160,7 @@ public class FormVentas extends javax.swing.JFrame {
         formProductos.setVisible(true);
         //se cierra la ventana actual
         this.dispose();
-    }//GEN-LAST:event_btnInventarioActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
@@ -285,9 +294,10 @@ public class FormVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidad;

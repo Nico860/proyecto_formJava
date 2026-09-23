@@ -21,6 +21,21 @@ public class FormProductos extends javax.swing.JFrame {
      */
     public FormProductos() {
         initComponents();
+        //Se le coloca la fuente a los labels o títulos
+        lblTituloForm.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblCod.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblNombre.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblPrecio.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblStock.setFont(FuentePersonalizada.fuentePersonalizada());
+        lblBuscar.setFont(FuentePersonalizada.fuentePersonalizada());
+        //Se le coloca la fuente a los botones
+        btnBuscar.setFont(FuentePersonalizada.fuentePersonalizada());
+        btnLimpiar.setFont(FuentePersonalizada.fuentePersonalizada());
+        btnVenta.setFont(FuentePersonalizada.fuentePersonalizada());
+        btnRegistrar.setFont(FuentePersonalizada.fuentePersonalizada());
+        btnSalir.setFont(FuentePersonalizada.fuentePersonalizada());
+        
+        
     }
 
     /**
@@ -33,11 +48,11 @@ public class FormProductos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblTituloForm = new javax.swing.JLabel();
+        lblCod = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
+        lblStock = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
@@ -46,9 +61,10 @@ public class FormProductos extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
+        lblBuscar = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         btnVenta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
@@ -56,31 +72,26 @@ public class FormProductos extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Inventario de Productos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 480, -1));
+        lblTituloForm.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        lblTituloForm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloForm.setText("Inventario de Productos");
+        jPanel1.add(lblTituloForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 480, -1));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Código:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 87, 100, -1));
+        lblCod.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblCod.setText("Código:");
+        jPanel1.add(lblCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 87, 100, -1));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 125, 100, -1));
+        lblNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre:");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 125, 100, -1));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Precio:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 169, 80, -1));
+        lblPrecio.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblPrecio.setText("Precio:");
+        jPanel1.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 169, 80, -1));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Stock:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 213, 90, -1));
+        lblStock.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblStock.setText("Stock:");
+        jPanel1.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 213, 90, -1));
 
         txtCodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 84, 437, -1));
@@ -96,11 +107,11 @@ public class FormProductos extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 298, 94, -1));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 130, -1));
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 298, 94, -1));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 130, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,25 +136,30 @@ public class FormProductos extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 343, 584, 270));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Buscar Producto:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 257, -1, -1));
+        lblBuscar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblBuscar.setText("Buscar Producto:");
+        jPanel1.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 257, -1, -1));
 
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 254, 380, -1));
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 298, 94, -1));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 94, -1));
+
+        btnSalir.setBackground(new java.awt.Color(255, 51, 51));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(this::btnSalirActionPerformed);
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 662, 140, 30));
 
         btnVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVenta.setText("Registrar Venta");
         btnVenta.addActionListener(this::btnVentaActionPerformed);
         jPanel1.add(btnVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 298, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1375141.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 650));
+        jLabel7.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asadal_stock_62.jpg"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 750));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,6 +186,10 @@ public class FormProductos extends javax.swing.JFrame {
         //se cierra la ventana actual 
         this.dispose();
     }//GEN-LAST:event_btnVentaActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,17 +220,18 @@ public class FormProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVenta;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblBuscar;
+    private javax.swing.JLabel lblCod;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblStock;
+    private javax.swing.JLabel lblTituloForm;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
