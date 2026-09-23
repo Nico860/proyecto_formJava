@@ -4,6 +4,7 @@
  */
 package appproyectoform;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.text.Normalizer;
 
@@ -50,6 +51,7 @@ public class FormProductos extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnVenta = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,22 +64,22 @@ public class FormProductos extends javax.swing.JFrame {
         jLabel1.setText("Inventario de Productos");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 480, -1));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Código:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 87, 100, -1));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 125, 100, -1));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Precio:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 169, 80, -1));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Stock:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 213, 90, -1));
@@ -94,11 +96,11 @@ public class FormProductos extends javax.swing.JFrame {
         txtStock.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 210, 437, -1));
 
-        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 298, 94, -1));
 
-        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 298, 94, -1));
 
@@ -125,25 +127,40 @@ public class FormProductos extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 343, 584, 270));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Buscar Producto:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 257, -1, -1));
 
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 254, 380, -1));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 254, 440, -1));
 
-        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseExited(evt);
+            }
+        });
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 298, 94, -1));
 
-        btnVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVenta.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnVenta.setText("Registrar Venta");
         btnVenta.addActionListener(this::btnVentaActionPerformed);
         jPanel1.add(btnVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 298, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1375141.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 650));
+        btnSalir.setBackground(new java.awt.Color(255, 51, 94));
+        btnSalir.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(this::btnSalirActionPerformed);
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 650, 90, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asadal_stock_30.jpg"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,6 +187,22 @@ public class FormProductos extends javax.swing.JFrame {
         //se cierra la ventana actual 
         this.dispose();
     }//GEN-LAST:event_btnVentaActionPerformed
+
+    private void btnBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseEntered
+        
+    }//GEN-LAST:event_btnBuscarMouseEntered
+
+    private void btnBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseExited
+        
+    }//GEN-LAST:event_btnBuscarMouseExited
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +233,7 @@ public class FormProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
