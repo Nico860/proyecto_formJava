@@ -23,6 +23,8 @@ public class FormVentas extends javax.swing.JFrame {
         initComponents();
         //se define no editable la tabla
         tbVentas.setEnabled(false);
+        
+        codlbl.setFont(FuentePersonalizada.fuentePersonalizada());
     }
 
     /**
@@ -36,9 +38,9 @@ public class FormVentas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        codlbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
+        txtCodigoProducto = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
@@ -47,19 +49,21 @@ public class FormVentas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtSalida = new javax.swing.JLabel();
         btnInventario = new javax.swing.JButton();
+        codlbl1 = new javax.swing.JLabel();
+        txtCodigoVenta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Registro de Ventas");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Código de Producto:");
+        codlbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        codlbl.setText("Código de Producto:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Cantidad:");
 
-        txtCodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -101,25 +105,15 @@ public class FormVentas extends javax.swing.JFrame {
         btnInventario.setText("Inventario de Productos");
         btnInventario.addActionListener(this::btnInventarioActionPerformed);
 
+        codlbl1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        codlbl1.setText("Código de Venta:");
+
+        txtCodigoVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -135,16 +129,37 @@ public class FormVentas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(52, 52, 52))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codlbl)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(codlbl1))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(42, 42, 42)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codlbl1)
+                    .addComponent(txtCodigoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codlbl)
+                    .addComponent(txtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -173,7 +188,7 @@ public class FormVentas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,17 +210,24 @@ public class FormVentas extends javax.swing.JFrame {
         
         try {
             //se extraen los datos de los campos
-            String codigo = txtCodigo.getText();
+            String codigoVenta = txtCodigoVenta.getText();
+            String codigoProducto = txtCodigoProducto.getText();
             int cantidad = Integer.parseInt(txtCantidad.getText());
             
             //se valida el campo que no este vacío
-            if(codigo.trim().isEmpty()){
+            if(codigoProducto.trim().isEmpty() || codigoVenta.trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Llene los campos vacíos");
                 return;
             }
             
+            //se valida que aun no exista el codigo de venta ingresado
+            if(existeCodigoVenta(codigoVenta)){
+                JOptionPane.showMessageDialog(this, "Ya existe una venta registrada con ese codigo");
+                return;
+            }
+            
             //se extrae el producto de la lista 
-            Producto p = buscar_por_codigo(codigo);
+            Producto p = buscar_por_codigo(codigoProducto);
             
             //se valida que se encontro el producto
             if(Objects.isNull(p)){
@@ -247,7 +269,7 @@ public class FormVentas extends javax.swing.JFrame {
     
     private void limpiar(){
         txtCantidad.setText("");
-        txtCodigo.setText("");
+        txtCodigoProducto.setText("");
     }
     
     private void refrescarListado(){
@@ -308,15 +330,17 @@ public class FormVentas extends javax.swing.JFrame {
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel codlbl;
+    private javax.swing.JLabel codlbl1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbVentas;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoProducto;
+    private javax.swing.JTextField txtCodigoVenta;
     private javax.swing.JLabel txtSalida;
     // End of variables declaration//GEN-END:variables
 }
