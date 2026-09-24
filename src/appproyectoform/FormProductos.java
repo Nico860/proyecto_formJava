@@ -211,7 +211,8 @@ public class FormProductos extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtBuscarActionPerformed
-
+  
+    
     /**
      * @param args the command line arguments
      */
