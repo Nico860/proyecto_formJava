@@ -4,8 +4,11 @@
  */
 package appproyectoform;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.text.Normalizer;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +25,8 @@ public class FormProductos extends javax.swing.JFrame {
      */
     public FormProductos() {
         initComponents();
+        //Se centra el formulario
+        this.setLocationRelativeTo(null);
         //Se le coloca la fuente a los labels o títulos
         lblTituloForm.setFont(FuentePersonalizada.fuentePersonalizada());
         lblCod.setFont(FuentePersonalizada.fuentePersonalizada());
@@ -67,7 +72,7 @@ public class FormProductos extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnVenta = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,14 +159,15 @@ public class FormProductos extends javax.swing.JFrame {
         btnSalir.addActionListener(this::btnSalirActionPerformed);
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 662, 140, 30));
 
+        btnVenta.setBackground(new java.awt.Color(51, 204, 255));
         btnVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVenta.setText("Registrar Venta");
         btnVenta.addActionListener(this::btnVentaActionPerformed);
         jPanel1.add(btnVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 298, -1, -1));
 
-        jLabel7.setBackground(new java.awt.Color(255, 0, 0));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asadal_stock_62.jpg"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 750));
+        lblFondo.setBackground(new java.awt.Color(255, 0, 0));
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asadal_stock_62.jpg"))); // NOI18N
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 750));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,12 +243,12 @@ public class FormProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVenta;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCod;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblStock;

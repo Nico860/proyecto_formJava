@@ -4,7 +4,10 @@
  */
 package appproyectoform;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Objects;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,8 +24,11 @@ public class FormVentas extends javax.swing.JFrame {
      */
     public FormVentas() {
         initComponents();
-        //se define no editable la tabla
+        //Se centra el form
+        this.setLocationRelativeTo(null);
+        //Se setea que la tabla no sea editable 
         tbVentas.setEnabled(false);
+        
         lblTituloForm.setFont(FuentePersonalizada.fuentePersonalizada());
         lblCodV.setFont(FuentePersonalizada.fuentePersonalizada());
         lblCodP.setFont(FuentePersonalizada.fuentePersonalizada());
@@ -57,7 +63,7 @@ public class FormVentas extends javax.swing.JFrame {
         txtSalida = new javax.swing.JLabel();
         lblCodV = new javax.swing.JLabel();
         txtCodigoVenta = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,10 +138,11 @@ public class FormVentas extends javax.swing.JFrame {
         jPanel1.add(lblCodV, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 69, 190, -1));
 
         txtCodigoVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoVenta.addActionListener(this::txtCodigoVentaActionPerformed);
         jPanel1.add(txtCodigoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 66, 400, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asadal_stock_30.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 690, 700));
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asadal_stock_30.jpg"))); // NOI18N
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 690, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,6 +220,10 @@ public class FormVentas extends javax.swing.JFrame {
         // se limpian los campos
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtCodigoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoVentaActionPerformed
 
     //busca y retorna el producto mediante el codigo
     private Producto buscar_por_codigo(String codigo){
@@ -298,12 +309,12 @@ public class FormVentas extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblCodP;
     private javax.swing.JLabel lblCodV;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblTituloForm;
     private javax.swing.JLabel lblTotalVentas;
     private javax.swing.JTable tbVentas;
