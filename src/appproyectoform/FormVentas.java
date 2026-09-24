@@ -225,6 +225,7 @@ public class FormVentas extends javax.swing.JFrame {
     }
     
     private void limpiar(){
+        txtCodigoProducto.setText(" ");
         txtCantidad.setText("");
         txtCodigoProducto.setText("");
     }
