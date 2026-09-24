@@ -4,12 +4,14 @@
  */
 package appproyectoform;
 
+import static appproyectoform.DBRegistros.productos;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.text.Normalizer;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -66,7 +68,7 @@ public class FormProductos extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
         lblBuscar = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -113,13 +115,14 @@ public class FormProductos extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
         jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 130, -1));
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 130, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -138,7 +141,7 @@ public class FormProductos extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProductos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 343, 584, 270));
 
@@ -211,7 +214,59 @@ public class FormProductos extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        try {
+            String codigo = txtCodigo.getText();
+            String nombre = txtNombre.getText();
+            double precio = Double.parseDouble(txtPrecio.getText());
+            int stock = Integer.parseInt(txtStock.getText());
+            
+            if (existeCodigo(codigo)) {
+                JOptionPane.showMessageDialog(this,"Ya existe un alumno con ese carne, favor validar.");
+                return; 
+            }
+            
+            Producto p = new Producto(codigo, nombre, precio, stock);
+            DBRegistros.productos.add(p);
+            
+            refrescarVista();
+
+             
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Ocurrió un error, intente de nuevo.");
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
   
+    private void refrescarVista(){
+        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel(); //Obtener el modelo de la tabla
+        modelo.setRowCount(0); //Vaciar la tabla
+        
+        for (int i = 0; i < DBRegistros.productos.size(); i++) { /*Recorrer toda la lista para volver a llenar la tabla*/
+            Producto p = productos.get(i); /*Extrae el estudiantes en la posición i*/
+            
+            modelo.addRow(new Object[]{
+                p.getCodigo(),/*Nombre*/
+                p.getNombre(),/*Carne*/
+                p.getPrecio(),/*Nota*/
+                p.getStock() 
+            });
+
+        }
+        
+    } 
+    
+    private boolean existeCodigo(String codigo){
+        for (int i = 0; i < DBRegistros.productos.size(); i++) {
+            Producto e = DBRegistros.productos.get(i);
+            
+            if (e.getCodigo().equalsIgnoreCase(codigo)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
     
     /**
      * @param args the command line arguments
@@ -246,7 +301,6 @@ public class FormProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnVenta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCod;
     private javax.swing.JLabel lblFondo;
@@ -254,6 +308,7 @@ public class FormProductos extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblTituloForm;
+    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
