@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.text.Normalizer;
+import java.util.Objects;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +43,8 @@ public class FormProductos extends javax.swing.JFrame {
         btnVenta.setFont(FuentePersonalizada.fuentePersonalizada());
         btnRegistrar.setFont(FuentePersonalizada.fuentePersonalizada());
         btnSalir.setFont(FuentePersonalizada.fuentePersonalizada());
-        
+        //se refresca la vista cada vez que se ingresa al form
+        refrescarVista();
         
     }
 
@@ -113,6 +115,7 @@ public class FormProductos extends javax.swing.JFrame {
         txtStock.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 210, 437, -1));
 
+        btnRegistrar.setBackground(new java.awt.Color(153, 255, 153));
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
@@ -120,6 +123,7 @@ public class FormProductos extends javax.swing.JFrame {
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 130, -1));
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -155,6 +159,7 @@ public class FormProductos extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 94, -1));
 
         btnSalir.setBackground(new java.awt.Color(255, 51, 51));
@@ -203,15 +208,6 @@ public class FormProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        String codigo = txtCodigo.getText();
-        boolean existe;
-        
-        for (int i = 0; i < DBRegistros.productos.size(); i++){
-            if (codigo.equalsIgnoreCase(codigo)){ existe = true; break; }
-            else {
-                JOptionPane.showMessageDialog(this, "No se encontró o ya existe, favor de verificar.");
-            }
-        }
         
     }//GEN-LAST:event_txtBuscarActionPerformed
 
@@ -237,6 +233,24 @@ public class FormProductos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Ocurrió un error, intente de nuevo.");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String codigo = txtBuscar.getText();
+        
+        Producto c = buscarProducto(codigo);
+        
+        if (Objects.isNull(c)){
+            JOptionPane.showMessageDialog(this, "No se encontró el codigo.");
+        }
+        
+        
+        
+        refrescarBusqueda(c);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
   
     private void refrescarVista(){
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel(); //Obtener el modelo de la tabla
@@ -267,6 +281,34 @@ public class FormProductos extends javax.swing.JFrame {
         
         return false;
     }
+    
+    
+    private Producto buscarProducto(String codigo){
+        //
+        for (int i = 0; i < DBRegistros.productos.size(); i++){
+            if (DBRegistros.productos.get(i).getCodigo().equalsIgnoreCase(codigo)){ 
+                //si encuentra un código igual retorna el objeto
+                return DBRegistros.productos.get(i); 
+            }
+            
+        }
+        //Si no encuentra nada retorna null
+       return null;
+    }
+    
+    private void refrescarBusqueda(Producto busqueda){
+        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
+        modelo.setRowCount(0);
+        
+        modelo.addRow(new Object[]{
+            busqueda.getCodigo(),
+            busqueda.getNombre(),
+            busqueda.getPrecio(),
+            busqueda.getStock()
+        });
+        
+    }
+    
     
     /**
      * @param args the command line arguments
