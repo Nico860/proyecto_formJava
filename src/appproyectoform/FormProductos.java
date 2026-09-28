@@ -44,7 +44,7 @@ public class FormProductos extends javax.swing.JFrame {
         
         
         //se refresca la vista cada vez que se ingresa al form
-        refrescarVista();
+        //refrescarVista();
     }
 
     /**
@@ -68,8 +68,6 @@ public class FormProductos extends javax.swing.JFrame {
         txtStock = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblProductos = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -121,34 +119,12 @@ public class FormProductos extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
         jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 298, 94, -1));
 
         btnLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 298, 94, -1));
-
-        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Codigo", "Nombre", "Precio", "Stock"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblProductos);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 343, 584, 270));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -233,6 +209,10 @@ public class FormProductos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
      private Producto buscarProducto(String codigo){
         //
         for (int i = 0; i < DBRegistros.productos.size(); i++){
@@ -244,7 +224,7 @@ public class FormProductos extends javax.swing.JFrame {
         //Si no encuentra nada retorna null
        return null;
     }
-    
+    /*
     private void refrescarBusqueda(Producto busqueda){
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
         modelo.setRowCount(0);
@@ -257,6 +237,7 @@ public class FormProductos extends javax.swing.JFrame {
         });
         
     }
+     */
      
     private boolean existeCodigo(String codigo){
         for (int i = 0; i < DBRegistros.productos.size(); i++) {
@@ -270,23 +251,24 @@ public class FormProductos extends javax.swing.JFrame {
         return false;
     }
     
+    /*
     private void refrescarVista(){
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel(); //Obtener el modelo de la tabla
         modelo.setRowCount(0); //Vaciar la tabla
 
-        for (int i = 0; i < DBRegistros.productos.size(); i++) { /*Recorrer toda la lista para volver a llenar la tabla*/
-            Producto p = DBRegistros.productos.get(i); /*Extrae el estudiantes en la posición i*/
+        for (int i = 0; i < DBRegistros.productos.size(); i++) { 
+            Producto p = DBRegistros.productos.get(i); 
 
             modelo.addRow(new Object[]{
-                p.getCodigo(),/*Nombre*/
-                p.getNombre(),/*Carne*/
-                p.getPrecio(),/*Nota*/
+                p.getCodigo(),
+                p.getNombre(),
+                p.getPrecio(),
                 p.getStock() 
             });
 
         }
 
-    } 
+    } */
     
     /**
      * @param args the command line arguments
@@ -327,8 +309,6 @@ public class FormProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;

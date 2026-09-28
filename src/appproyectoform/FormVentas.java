@@ -19,6 +19,7 @@ public class FormVentas extends javax.swing.JFrame {
      */
     public FormVentas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -136,9 +137,9 @@ public class FormVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //se crea una instancía del formulario
-        FormProductos formProductos = new FormProductos();
+        FormProd p = new FormProd();
         //se hace visible el form
-        formProductos.setVisible(true);
+        p.setVisible(true);
         //se cierra la ventana actual
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
