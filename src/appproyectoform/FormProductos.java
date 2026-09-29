@@ -210,7 +210,27 @@ public class FormProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        
+            try {
+            String codigo = txtCodigo.getText();
+            String nombre = txtNombre.getText();
+            double precio = Double.parseDouble(txtPrecio.getText());
+            int stock = Integer.parseInt(txtStock.getText());
+            
+            if (existeCodigo(codigo)) {
+                JOptionPane.showMessageDialog(this,"Ya existe un producto con ese código, intentelo de nuevo.");
+                return; 
+            }
+            
+            Producto p = new Producto(nombre, nombre, precio, stock);
+            DBRegistros.productos.add(p);
+            
+            
+             
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Ocurrió un error, intente de nuevo.");
+        }
+       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
      private Producto buscarProducto(String codigo){

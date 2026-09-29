@@ -6,6 +6,7 @@ package appproyectoform;
 
 import java.util.Objects;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +22,7 @@ public class FormProd extends javax.swing.JFrame {
     public FormProd() {
         initComponents();
         this.setLocationRelativeTo(null);
+        refrescarVista();
     }
 
     /**
@@ -35,10 +37,10 @@ public class FormProd extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         btnRegistrarVenta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
@@ -71,10 +73,10 @@ public class FormProd extends javax.swing.JFrame {
         btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
         getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 110, 40));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, 110, 40));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, 110, 40));
 
         btnRegistrarVenta.setBackground(new java.awt.Color(51, 51, 255));
         btnRegistrarVenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -82,7 +84,7 @@ public class FormProd extends javax.swing.JFrame {
         btnRegistrarVenta.addActionListener(this::btnRegistrarVentaActionPerformed);
         getContentPane().add(btnRegistrarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 160, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,7 +95,7 @@ public class FormProd extends javax.swing.JFrame {
                 "Código", "Nombre", "Precio", "Stock"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProductos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 560, 240));
         getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, 310, 30));
@@ -149,18 +151,45 @@ public class FormProd extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String codigo = txtBuscar.getText();
         
         Producto c = buscarProducto(codigo);
         
         if (Objects.isNull(c)){
             JOptionPane.showMessageDialog(this, "No se encontró el codigo.");
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }
+        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
+        modelo.setRowCount(0);
+        modelo.addRow(new Object[]{
+                c.getCodigo(),
+                c.getNombre(),
+                c.getPrecio(),
+                c.getStock() 
+            });
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        try {
+            String codigo = txtCodigo.getText();
+            String nombre = txtNombre.getText();
+            double precio = Double.parseDouble(txtPrecio.getText());
+            int stock = Integer.parseInt(txtStock.getText());
+            
+            if (existeCodigo(codigo)) {
+                JOptionPane.showMessageDialog(this,"Ya existe un producto con ese código, intentelo de nuevo.");
+                return; 
+            }
+            
+            Producto p = new Producto(codigo, nombre, precio, stock);
+            DBRegistros.productos.add(p);
+            
+            refrescarVista();
+             
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Ocurrió un error, intente de nuevo.");
+        }
+       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -181,6 +210,37 @@ public class FormProd extends javax.swing.JFrame {
         //Si no encuentra nada retorna null
        return null;
     }
+    
+    private boolean existeCodigo(String codigo){
+        for (int i = 0; i < DBRegistros.productos.size(); i++) {
+            Producto e = DBRegistros.productos.get(i);
+
+            if (e.getCodigo().equalsIgnoreCase(codigo)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    private void refrescarVista(){
+        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel(); 
+        modelo.setRowCount(0);
+
+        for (int i = 0; i < DBRegistros.productos.size(); i++) { 
+            Producto p = DBRegistros.productos.get(i); 
+
+            modelo.addRow(new Object[]{
+                p.getCodigo(),
+                p.getNombre(),
+                p.getPrecio(),
+                p.getStock() 
+            });
+
+        }
+
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -208,20 +268,20 @@ public class FormProd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrarVenta;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblStock;
+    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
