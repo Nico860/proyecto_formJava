@@ -25,6 +25,15 @@ public class Producto {
     
     //se definen los metodos
 
+    public boolean restarStock(int cantidad){
+        //se valida que haiga suficiente
+        if(stock < cantidad) return false;
+        
+        //se resta del stock
+        stock -= cantidad;
+        return true;
+    }
+    
     public String getCodigo() {
         return codigo;
     }

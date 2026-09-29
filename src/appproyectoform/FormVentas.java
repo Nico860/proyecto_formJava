@@ -4,7 +4,9 @@
  */
 package appproyectoform;
 
+import java.util.Objects;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +22,9 @@ public class FormVentas extends javax.swing.JFrame {
     public FormVentas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        //se carga la vista al iniciar
+        refrescarVista();
     }
 
     /**
@@ -75,6 +80,7 @@ public class FormVentas extends javax.swing.JFrame {
 
         btnLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 182, 94, -1));
 
         tbVentas.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,7 +111,7 @@ public class FormVentas extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 512, -1, 42));
 
         txtSalida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtSalida.setForeground(new java.awt.Color(255, 255, 255));
+        txtSalida.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.add(txtSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 512, 457, 42));
 
         btnRegresar.setBackground(new java.awt.Color(204, 204, 255));
@@ -162,18 +168,32 @@ public class FormVentas extends javax.swing.JFrame {
             Producto p = buscar_por_codigo(codigo);
             
             //se valida que se encontro el producto
-            if(p == null){
+            if(Objects.isNull(p)){
                 JOptionPane.showMessageDialog(this, "No se encontro el producto, valide que el codigo sea valido");
+                return;
+            }
+            
+            //se resta del stock la cantidad y se valida que se realizo correctamente
+            if(!p.restarStock(cantidad)){
+                JOptionPane.showMessageDialog(this, "No hay stock suficiente para realizar la compra");
                 return;
             }
             
             //se registra la venta en la lista
             DBRegistros.ventas.add(new Venta(p, cantidad));
             
-            
+            //se refresca la ventana
+            refrescarVista();
+
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error, valide los campos");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     //busca y retorna el producto mediante el codigo
     private Producto buscar_por_codigo(String codigo){
@@ -183,6 +203,34 @@ public class FormVentas extends javax.swing.JFrame {
             if(p.getCodigo().equalsIgnoreCase(codigo)) return p;
         }
         return null;
+    }
+    //refresca la vista de la tabla
+    private void refrescarVista(){
+        //se obtiene el modelo de la tabla
+        DefaultTableModel modelo = (DefaultTableModel) tbVentas.getModel();
+        modelo.setRowCount(0); //se limpia 
+        
+        double totalFinal = 0; //acumula cada total
+        
+        //se recorre la lista y se agrega cada venta
+        for (Venta venta : DBRegistros.ventas) {
+            modelo.addRow(new Object[]{
+                venta.getProducto().getCodigo(), //codigo producto
+                venta.getCantidad(), //cantidad
+                venta.total() //total
+            });
+            
+            totalFinal += venta.total();
+        }
+        
+        //se muestra el total final
+        txtSalida.setText(String.valueOf(totalFinal));
+    }
+    
+    private void limpiar(){
+        //limpia los campos
+        txtCodigo.setText("");
+        txtCantidad.setText("");
     }
     
     /**

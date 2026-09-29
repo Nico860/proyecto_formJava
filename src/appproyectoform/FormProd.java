@@ -193,10 +193,10 @@ public class FormProd extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        txtCodigo.setText(" ");
-        txtNombre.setText(" ");
-        txtPrecio.setText(" ");
-        txtStock.setText(" ");
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private Producto buscarProducto(String codigo){
